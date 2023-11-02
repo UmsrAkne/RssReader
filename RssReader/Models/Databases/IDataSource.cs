@@ -7,5 +7,9 @@ namespace RssReader.Models.Databases
         public IEnumerable<Feed> GetFeeds();
 
         public IEnumerable<WebSite> GetWebSites();
+
+        public void Add(Feed feed);
+
+        public void Add(WebSite webSite);
     }
 }

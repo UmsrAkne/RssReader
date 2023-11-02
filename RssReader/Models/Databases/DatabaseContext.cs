@@ -34,5 +34,15 @@ namespace RssReader.Models.Databases
         {
             return WebSites;
         }
+
+        public void Add(Feed feed)
+        {
+            Feeds.Add(feed);
+        }
+
+        public void Add(WebSite webSite)
+        {
+            WebSites.Add(webSite);
+        }
     }
 }

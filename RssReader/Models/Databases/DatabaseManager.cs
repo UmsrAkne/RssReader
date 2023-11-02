@@ -7,6 +7,11 @@ namespace RssReader.Models.Databases
             DataSource = dataSource;
         }
 
-        public IDataSource DataSource { get; private set; }
+        private IDataSource DataSource { get; }
+
+        public void AddFeed(Feed feed)
+        {
+            DataSource.Add(feed);
+        }
     }
 }
