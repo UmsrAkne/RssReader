@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace RssReader.Models.Databases
 {
     public class DatabaseManager
@@ -11,6 +13,11 @@ namespace RssReader.Models.Databases
 
         public void AddFeed(Feed feed)
         {
+            if (DataSource.GetFeeds().Any(f => f.Url == feed.Url && f.DateTime == feed.DateTime))
+            {
+                return;
+            }
+
             DataSource.Add(feed);
         }
     }
