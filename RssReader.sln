@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssReader", "RssReader\RssReader.csproj", "{C8F3913E-9E65-48AA-93ED-AD542176C41D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssReaderTest", "RssReaderTest\RssReaderTest.csproj", "{1BBC04CC-783C-433E-A8F7-B191A75EDD66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C8F3913E-9E65-48AA-93ED-AD542176C41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F3913E-9E65-48AA-93ED-AD542176C41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F3913E-9E65-48AA-93ED-AD542176C41D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BBC04CC-783C-433E-A8F7-B191A75EDD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BBC04CC-783C-433E-A8F7-B191A75EDD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BBC04CC-783C-433E-A8F7-B191A75EDD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BBC04CC-783C-433E-A8F7-B191A75EDD66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
