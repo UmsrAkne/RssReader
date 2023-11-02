@@ -6,7 +6,7 @@ namespace RssReader.Models
     {
         public int Id { get; set; }
 
-        public int ParentId { get; set; }
+        public int ParentSiteId { get; set; }
 
         public DateTime DateTime { get; set; }
 
