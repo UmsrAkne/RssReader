@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using Microsoft.Data.Sqlite;
@@ -5,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RssReader.Models.Databases
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : DbContext, IDataSource
     {
         private string DatabaseFileName => "database.sqlite";
 
@@ -22,6 +23,16 @@ namespace RssReader.Models.Databases
 
             var connectionString = new SqliteConnectionStringBuilder { DataSource = DatabaseFileName, }.ToString();
             optionsBuilder.UseSqlite(new SQLiteConnection(connectionString));
+        }
+
+        public IEnumerable<Feed> GetFeeds()
+        {
+            return Feeds;
+        }
+
+        public IEnumerable<WebSite> GetWebSites()
+        {
+            return WebSites;
         }
     }
 }
