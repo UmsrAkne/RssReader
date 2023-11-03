@@ -41,6 +41,7 @@
             Grid.Column="0"
             Grid.Row="1"
             Grid.RowSpan="3"
+            ItemsSource="{Binding WebSiteTreeViewModel.WebSiteWrappers}"
             Width="250">
 
             <TreeView.ItemTemplate>

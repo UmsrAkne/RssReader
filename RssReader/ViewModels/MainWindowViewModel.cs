@@ -8,5 +8,7 @@ namespace RssReader.ViewModels
         public string Title => "Prism Application";
 
         public FeedListViewModel FeedListViewModel { get; private set; }
+
+        public WebSiteTreeViewModel WebSiteTreeViewModel { get; private set; }
     }
 }
