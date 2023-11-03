@@ -11,7 +11,10 @@ namespace RssReader.ViewModels
         public MainWindowViewModel()
         {
             IDataSource dataSource = new DatabaseContext();
+            ((DatabaseContext)dataSource).Database.EnsureCreated();
+
             DatabaseManager = new DatabaseManager(dataSource);
+            WebSiteTreeViewModel = new WebSiteTreeViewModel(DatabaseManager.GetWebSiteWrappers());
         }
 
         public string Title => "Prism Application";
