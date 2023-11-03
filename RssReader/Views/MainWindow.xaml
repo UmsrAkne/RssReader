@@ -42,18 +42,12 @@
             Grid.Row="1"
             Grid.RowSpan="3"
             Width="250">
+
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate>
-                    <TextBlock Text="{Binding Title}" />
+                <HierarchicalDataTemplate DataType="{x:Type models:WebSiteWrapper}" ItemsSource="{Binding Children}">
+                    <TextBlock FontSize="{StaticResource BasicFontSize}" Text="{Binding Name}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
-
-            <TreeView.Items>
-                <models:WebSiteGroup />
-                <models:WebSiteGroup />
-                <models:WebSiteGroup />
-                <models:WebSiteGroup />
-            </TreeView.Items>
         </TreeView>
 
         <ListView
