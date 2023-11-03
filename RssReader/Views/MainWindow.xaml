@@ -58,7 +58,8 @@
             Grid.Column="1"
             Grid.Row="1"
             HorizontalContentAlignment="Stretch"
-            ItemTemplate="{StaticResource ListViewDataTemplate}">
+            ItemTemplate="{StaticResource ListViewDataTemplate}"
+            ItemsSource="{Binding FeedListViewModel.Feeds}">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

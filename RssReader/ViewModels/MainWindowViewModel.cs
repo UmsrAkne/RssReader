@@ -6,5 +6,7 @@ namespace RssReader.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         public string Title => "Prism Application";
+
+        public FeedListViewModel FeedListViewModel { get; private set; }
     }
 }
