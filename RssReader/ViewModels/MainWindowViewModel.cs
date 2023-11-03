@@ -1,4 +1,6 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using RssReader.Models;
 
 namespace RssReader.ViewModels
 {
@@ -10,5 +12,16 @@ namespace RssReader.ViewModels
         public FeedListViewModel FeedListViewModel { get; private set; }
 
         public WebSiteTreeViewModel WebSiteTreeViewModel { get; private set; }
+
+        /// <summary>
+        ///     TreeView.SelectedItem が変更されたときに実行するコマンド。
+        ///     FeedListViewModel の更新処理を行う。
+        /// </summary>
+        public DelegateCommand<WebSiteWrapper> ReloadFeedsCommand => new ((webSiteWrapper) =>
+        {
+            if (webSiteWrapper.IsWebSite)
+            {
+            }
+        });
     }
 }
