@@ -10,8 +10,10 @@ namespace RssReader.Models.Databases
     {
         private string DatabaseFileName => "database.sqlite";
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global : Database 利用のため、get, set の両方が必要
         public DbSet<Feed> Feeds { get; set; }
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global : Database 利用のため、get, set の両方が必要
         public DbSet<WebSite> WebSites { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
