@@ -1,12 +1,19 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using RssReader.Models;
+using RssReader.Models.Databases;
 
 namespace RssReader.ViewModels
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
+        public MainWindowViewModel()
+        {
+            IDataSource dataSource = new DatabaseContext();
+            DatabaseManager = new DatabaseManager(dataSource);
+        }
+
         public string Title => "Prism Application";
 
         public FeedListViewModel FeedListViewModel { get; private set; }
@@ -23,5 +30,7 @@ namespace RssReader.ViewModels
             {
             }
         });
+
+        private DatabaseManager DatabaseManager { get; set; }
     }
 }

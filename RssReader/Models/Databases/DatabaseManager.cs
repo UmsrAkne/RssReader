@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RssReader.Models.Databases
@@ -19,6 +20,11 @@ namespace RssReader.Models.Databases
             }
 
             DataSource.Add(feed);
+        }
+
+        public IEnumerable<Feed> GetFeeds(int webSiteId)
+        {
+            return DataSource.GetFeeds().Where(f => f.ParentSiteId == webSiteId);
         }
     }
 }
