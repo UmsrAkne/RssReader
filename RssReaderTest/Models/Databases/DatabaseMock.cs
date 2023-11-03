@@ -10,6 +10,8 @@ namespace RssReaderTest.Models.Databases
 
         public List<WebSite> WebSites { get; } = new ();
 
+        public List<WebSiteGroup> WebSiteGroups { get; } = new ();
+
         public IEnumerable<Feed> GetFeeds()
         {
             return Feeds;
@@ -20,6 +22,11 @@ namespace RssReaderTest.Models.Databases
             return WebSites;
         }
 
+        public IEnumerable<WebSiteGroup> GetWebSiteGroups()
+        {
+            return WebSiteGroups;
+        }
+
         public void Add(Feed feed)
         {
             Feeds.Add(feed);
@@ -28,6 +35,11 @@ namespace RssReaderTest.Models.Databases
         public void Add(WebSite webSite)
         {
             WebSites.Add(webSite);
+        }
+
+        public void Add(WebSiteGroup webSiteGroup)
+        {
+            WebSiteGroups.Add(webSiteGroup);
         }
     }
 }

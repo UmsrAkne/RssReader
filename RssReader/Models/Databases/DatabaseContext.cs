@@ -16,6 +16,9 @@ namespace RssReader.Models.Databases
         // ReSharper disable once UnusedAutoPropertyAccessor.Global : Database 利用のため、get, set の両方が必要
         public DbSet<WebSite> WebSites { get; set; }
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global : Database 利用のため、get, set の両方が必要
+        public DbSet<WebSiteGroup> WebSiteGroups { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!File.Exists(DatabaseFileName))
@@ -37,6 +40,11 @@ namespace RssReader.Models.Databases
             return WebSites;
         }
 
+        public IEnumerable<WebSiteGroup> GetWebSiteGroups()
+        {
+            return WebSiteGroups;
+        }
+
         public void Add(Feed feed)
         {
             Feeds.Add(feed);
@@ -45,6 +53,11 @@ namespace RssReader.Models.Databases
         public void Add(WebSite webSite)
         {
             WebSites.Add(webSite);
+        }
+
+        public void Add(WebSiteGroup webSiteGroup)
+        {
+            WebSiteGroups.Add(webSiteGroup);
         }
     }
 }

@@ -19,5 +19,11 @@ namespace RssReader.Models
         /// </summary>
         [Required]
         public string Url { get; set; } = string.Empty;
+
+        /// <summary>
+        ///     WebSiteGroup の Id
+        /// </summary>
+        [Required]
+        public int GroupId { get; set; }
     }
 }
