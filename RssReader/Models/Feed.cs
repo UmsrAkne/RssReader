@@ -16,13 +16,13 @@ namespace RssReader.Models
         public DateTime DateTime { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required]
-        public string Url { get; set; }
+        public string Url { get; set; } = string.Empty;
 
         [Required]
         public bool IsRead { get; set; }
