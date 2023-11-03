@@ -45,7 +45,10 @@
 
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type models:WebSiteWrapper}" ItemsSource="{Binding Children}">
-                    <TextBlock FontSize="{StaticResource BasicFontSize}" Text="{Binding Name}" />
+                    <TextBlock
+                        FontSize="{StaticResource BasicFontSize}"
+                        Padding="4,0"
+                        Text="{Binding Name}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
