@@ -1,7 +1,7 @@
 ﻿<Window
-    Height="350"
+    Height="700"
     Title="{Binding Title}"
-    Width="525"
+    Width="1200"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     mc:Ignorable="d"
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -12,7 +12,61 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:RssReader.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <!--  一番上の段にはメニューバーを設置する予定  -->
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TreeView
+            Grid.Column="0"
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            Width="250" />
+
+        <ListView
+            AlternationCount="2"
+            Grid.Column="1"
+            Grid.Row="1"
+            HorizontalContentAlignment="Stretch"
+            ItemTemplate="{StaticResource ListViewDataTemplate}">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter Property="Background" Value="AntiqueWhite" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <TextBlock Grid.Column="1" Grid.Row="2" />
+
+        <StatusBar
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="3">
+            <TextBlock />
+        </StatusBar>
     </Grid>
 </Window>
