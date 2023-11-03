@@ -60,7 +60,8 @@
             HorizontalContentAlignment="Stretch"
             ItemTemplate="{StaticResource ListViewDataTemplate}"
             ItemsSource="{Binding FeedListViewModel.Feeds}"
-            Name="FeedListView">
+            Name="FeedListView"
+            SelectedItem="{Binding FeedListViewModel.SelectedItem}">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

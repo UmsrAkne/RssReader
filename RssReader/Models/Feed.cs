@@ -1,10 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Prism.Mvvm;
 
 namespace RssReader.Models
 {
-    public class Feed
+    public class Feed : BindableBase
     {
+        private bool isRead;
+
         [Key]
         [Required]
         public int Id { get; set; }
@@ -25,6 +28,6 @@ namespace RssReader.Models
         public string Url { get; set; } = string.Empty;
 
         [Required]
-        public bool IsRead { get; set; }
+        public bool IsRead { get => isRead; set => SetProperty(ref isRead, value); }
     }
 }
