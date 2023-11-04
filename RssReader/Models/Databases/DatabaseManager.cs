@@ -40,5 +40,10 @@ namespace RssReader.Models.Databases
                     };
                 });
         }
+
+        public IEnumerable<WebSiteGroup> GetWebSiteGroups()
+        {
+            return DataSource.GetWebSiteGroups();
+        }
     }
 }
