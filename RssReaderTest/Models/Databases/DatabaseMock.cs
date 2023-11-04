@@ -41,5 +41,9 @@ namespace RssReaderTest.Models.Databases
         {
             WebSiteGroups.Add(webSiteGroup);
         }
+
+        public void Save()
+        {
+        }
     }
 }

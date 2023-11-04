@@ -15,5 +15,7 @@ namespace RssReader.Models.Databases
         public void Add(WebSite webSite);
 
         public void Add(WebSiteGroup webSiteGroup);
+
+        public void Save();
     }
 }

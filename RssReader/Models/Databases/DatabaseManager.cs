@@ -45,5 +45,10 @@ namespace RssReader.Models.Databases
         {
             return DataSource.GetWebSiteGroups();
         }
+
+        public void SaveChanges()
+        {
+            DataSource.Save();
+        }
     }
 }

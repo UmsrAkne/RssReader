@@ -59,5 +59,10 @@ namespace RssReader.Models.Databases
         {
             WebSiteGroups.Add(webSiteGroup);
         }
+
+        public void Save()
+        {
+            SaveChanges();
+        }
     }
 }
