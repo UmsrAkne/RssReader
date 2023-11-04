@@ -1,15 +1,21 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
 using RssReader.Models;
 using RssReader.Models.Databases;
+using RssReader.Views;
 
 namespace RssReader.ViewModels
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
-        public MainWindowViewModel()
+        private readonly IDialogService dialogService;
+
+        public MainWindowViewModel(IDialogService dialogService)
         {
+            this.dialogService = dialogService;
+
             IDataSource dataSource = new DatabaseContext();
             ((DatabaseContext)dataSource).Database.EnsureCreated();
 
@@ -32,6 +38,16 @@ namespace RssReader.ViewModels
             if (webSiteWrapper.IsWebSite)
             {
             }
+        });
+
+        public DelegateCommand ShowWebSiteRegistrationPageCommand => new (() =>
+        {
+            dialogService.ShowDialog(
+                nameof(WebSiteRegistrationPage),
+                new DialogParameters() { { nameof(DatabaseManager), DatabaseManager }, },
+                (IDialogResult result) =>
+                {
+                });
         });
 
         private DatabaseManager DatabaseManager { get; set; }

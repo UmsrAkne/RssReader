@@ -1,6 +1,7 @@
-﻿using Prism.Ioc;
+﻿using System.Windows;
+using Prism.Ioc;
+using RssReader.ViewModels;
 using RssReader.Views;
-using System.Windows;
 
 namespace RssReader
 {
@@ -16,6 +17,7 @@ namespace RssReader
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDialog<WebSiteRegistrationPage, WebSiteRegistrationPageViewModel>();
         }
     }
 }
