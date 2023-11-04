@@ -11,12 +11,7 @@ namespace RssReader.ViewModels
 {
     public class WebSiteRegistrationPageViewModel : BindableBase, IDialogAware
     {
-        private object url;
-
-        public WebSiteRegistrationPageViewModel(string displayName)
-        {
-            DisplayName = displayName;
-        }
+        private string url;
 
         public event Action<IDialogResult> RequestClose;
 
@@ -27,18 +22,39 @@ namespace RssReader.ViewModels
             RequestClose?.Invoke(new DialogResult());
         });
 
-        public DelegateCommand ConfirmCommand => new (() =>
+        public DelegateCommand<WebSiteGroup> ConfirmCommand => new ((webSiteGroup) =>
         {
+            if (string.IsNullOrEmpty(Url))
+            {
+                return;
+            }
+
+            if (webSiteGroup == null)
+            {
+                var wg = new WebSiteGroup { Name = "default Name Group", };
+                DatabaseManager.Add(wg);
+                webSiteGroup = wg;
+            }
+
+            var site = new WebSite
+            {
+                Title = DisplayName,
+                Url = Url,
+                GroupId = webSiteGroup.Id,
+            };
+
+            DatabaseManager.Add(site);
+            DatabaseManager.SaveChanges();
             RequestClose?.Invoke(new DialogResult());
         });
 
         private DatabaseManager DatabaseManager { get; set; }
 
-        public List<WebSiteGroup> WebSiteGroups { get; set; }
+        public List<WebSiteGroup> WebSiteGroups { get; private set; }
 
         public string DisplayName { get; set; }
 
-        public object Url { get => url; set => SetProperty(ref url, value); }
+        public string Url { get => url; set => SetProperty(ref url, value); }
 
         public bool CanCloseDialog()
         {

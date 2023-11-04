@@ -22,6 +22,16 @@ namespace RssReader.Models.Databases
             DataSource.Add(feed);
         }
 
+        public void Add(WebSiteGroup webSiteGroup)
+        {
+            DataSource.Add(webSiteGroup);
+        }
+
+        public void Add(WebSite webSite)
+        {
+            DataSource.Add(webSite);
+        }
+
         public IEnumerable<Feed> GetFeeds(int webSiteId)
         {
             return DataSource.GetFeeds().Where(f => f.ParentSiteId == webSiteId);

@@ -26,7 +26,11 @@
                     Text="Group : "
                     Width="40" />
 
-                <ComboBox HorizontalAlignment="Left" Width="250">
+                <ComboBox
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding WebSiteGroups}"
+                    Name="ComboBox"
+                    Width="250">
                     <ComboBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type models:WebSiteGroup}">
                             <TextBlock Text="{Binding Name}" />
@@ -41,7 +45,7 @@
                     Margin="0,0,10,0"
                     Text="URL : "
                     Width="40" />
-                <TextBox DockPanel.Dock="Right" Text="{Binding Url}" />
+                <TextBox DockPanel.Dock="Right" Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>
 
             <DockPanel Margin="0,3">
@@ -50,7 +54,7 @@
                     Margin="0,0,10,0"
                     Text="Name : "
                     Width="40" />
-                <TextBox DockPanel.Dock="Right" Text="{Binding DisplayName}" />
+                <TextBox DockPanel.Dock="Right" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>
 
         </StackPanel>
@@ -62,6 +66,7 @@
 
             <Button
                 Command="{Binding ConfirmCommand}"
+                CommandParameter="{Binding ElementName=ComboBox, Path=SelectedItem}"
                 Content="Add WebSite"
                 Height="20"
                 Margin="3,5"
