@@ -27,6 +27,11 @@ namespace RssReader.ViewModels
             RequestClose?.Invoke(new DialogResult());
         });
 
+        public DelegateCommand ConfirmCommand => new (() =>
+        {
+            RequestClose?.Invoke(new DialogResult());
+        });
+
         private DatabaseManager DatabaseManager { get; set; }
 
         public List<WebSiteGroup> WebSiteGroups { get; set; }
