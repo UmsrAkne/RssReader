@@ -9,6 +9,7 @@ using RssReader.Models.Databases;
 
 namespace RssReader.ViewModels
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class WebSiteRegistrationPageViewModel : BindableBase, IDialogAware
     {
         private string url;
