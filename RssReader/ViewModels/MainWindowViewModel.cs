@@ -13,6 +13,7 @@ namespace RssReader.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly IDialogService dialogService;
+        private FeedListViewModel feedListViewModel;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -27,7 +28,11 @@ namespace RssReader.ViewModels
 
         public string Title => "Prism Application";
 
-        public FeedListViewModel FeedListViewModel { get; private set; }
+        public FeedListViewModel FeedListViewModel
+        {
+            get => feedListViewModel;
+            private set => SetProperty(ref feedListViewModel, value);
+        }
 
         public WebSiteTreeViewModel WebSiteTreeViewModel { get; private set; }
 
@@ -40,6 +45,7 @@ namespace RssReader.ViewModels
             if (webSiteWrapper.IsWebSite)
             {
                 WebSiteTreeViewModel.SelectedId = webSiteWrapper.WebSite.Id;
+                FeedListViewModel = new FeedListViewModel(DatabaseManager.GetFeeds(webSiteWrapper.WebSite.Id));
             }
         });
 
