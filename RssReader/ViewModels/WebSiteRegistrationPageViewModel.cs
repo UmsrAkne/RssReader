@@ -34,6 +34,7 @@ namespace RssReader.ViewModels
             {
                 var wg = new WebSiteGroup { Name = "default Name Group", };
                 DatabaseManager.Add(wg);
+                DatabaseManager.SaveChanges(); // 変更を確定して WebSiteGroup の Id を確定させる。
                 webSiteGroup = wg;
             }
 
