@@ -7,14 +7,14 @@ namespace RssReader.Models
 {
     public static class FeedReader
     {
-        public static IEnumerable<Feed> GetRss(string url)
+        public static IEnumerable<Feed> GetRss(WebSite website)
         {
-            using var rdr = XmlReader.Create(url);
+            using var rdr = XmlReader.Create(website.Url);
             var feed = SyndicationFeed.Load(rdr);
 
             return feed.Items.Select(f => new Feed
             {
-                // ParentId = 0,
+                ParentSiteId = website.Id,
                 DateTime = f.PublishDate.DateTime,
                 Description = f.Summary != null ? f.Summary.Text : string.Empty,
                 Title = f.Title.Text,

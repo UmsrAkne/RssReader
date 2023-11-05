@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using RssReader.Models;
@@ -37,7 +39,31 @@ namespace RssReader.ViewModels
         {
             if (webSiteWrapper.IsWebSite)
             {
+                WebSiteTreeViewModel.SelectedId = webSiteWrapper.WebSite.Id;
             }
+        });
+
+        public DelegateCommand<IEnumerable<WebSiteWrapper>> LoadRssCommand => new ((wrappers) =>
+        {
+            var webSiteWrappers = wrappers.ToList();
+            if (!webSiteWrappers.Any())
+            {
+                return;
+            }
+
+            foreach (var ww in webSiteWrappers)
+            {
+                foreach (var site in ww.Children)
+                {
+                    foreach (var feed in FeedReader.GetRss(site.WebSite))
+                    {
+                        DatabaseManager.AddFeed(feed);
+                    }
+                }
+            }
+
+            DatabaseManager.SaveChanges();
+            FeedListViewModel = new FeedListViewModel(DatabaseManager.GetFeeds(WebSiteTreeViewModel.SelectedId));
         });
 
         public DelegateCommand ShowWebSiteRegistrationPageCommand => new (() =>
