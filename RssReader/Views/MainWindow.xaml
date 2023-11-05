@@ -45,6 +45,10 @@
 
             <MenuItem Header="機能">
                 <MenuItem Command="{Binding ShowWebSiteRegistrationPageCommand}" Header="ウェブサイト登録" />
+                <MenuItem
+                    Command="{Binding LoadRssCommand}"
+                    CommandParameter="{Binding ElementName=TreeView, Path=ItemsSource}"
+                    Header="更新" />
             </MenuItem>
         </Menu>
 

@@ -13,5 +13,7 @@ namespace RssReader.ViewModels
         }
 
         public ObservableCollection<WebSiteWrapper> WebSiteWrappers { get; private set; }
+
+        public int SelectedId { get; set; }
     }
 }
