@@ -16,7 +16,7 @@ namespace RssReader.Models
             {
                 // ParentId = 0,
                 DateTime = f.PublishDate.DateTime,
-                Description = f.Summary.Text,
+                Description = f.Summary != null ? f.Summary.Text : string.Empty,
                 Title = f.Title.Text,
                 Url = f.Links.Count > 0 ? f.Links[0].Uri.AbsolutePath : "",
             });
