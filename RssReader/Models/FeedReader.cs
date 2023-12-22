@@ -18,7 +18,7 @@ namespace RssReader.Models
                 DateTime = f.PublishDate.DateTime,
                 Description = f.Summary != null ? f.Summary.Text : string.Empty,
                 Title = f.Title.Text,
-                Url = f.Links.Count > 0 ? f.Links[0].Uri.AbsolutePath : "",
+                Url = f.Links.Count > 0 ? f.Links[0].Uri.AbsoluteUri : "",
             });
         }
     }
