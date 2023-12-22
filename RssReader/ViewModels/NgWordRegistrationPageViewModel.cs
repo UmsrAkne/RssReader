@@ -12,6 +12,7 @@ namespace RssReader.ViewModels
     public class NgWordRegistrationPageViewModel : BindableBase, IDialogAware
     {
         private ObservableCollection<NgWord> ngWords;
+        private string inputText;
 
         public event Action<IDialogResult> RequestClose;
 
@@ -26,12 +27,15 @@ namespace RssReader.ViewModels
 
         public ObservableCollection<NgWord> NgWords { get => ngWords; set => SetProperty(ref ngWords, value); }
 
+        public string InputText { get => inputText; set => SetProperty(ref inputText, value); }
+
         public DelegateCommand<string> AddNgWordCommand => new ((word) =>
         {
             var n = new NgWord() { Word = word, };
             DatabaseManager.Add(n);
             NgWords.Add(n);
             DatabaseManager.SaveChanges();
+            InputText = string.Empty;
         });
 
         public bool CanCloseDialog()

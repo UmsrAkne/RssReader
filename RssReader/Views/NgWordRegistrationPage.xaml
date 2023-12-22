@@ -30,8 +30,8 @@
             <TextBlock Text="Words : " />
             <TextBox
                 Margin="4,0"
-                Width="400"
-                x:Name="TextBox" />
+                Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
+                Width="400" />
 
             <StackPanel
                 DockPanel.Dock="Right"
@@ -40,7 +40,7 @@
 
                 <Button
                     Command="{Binding AddNgWordCommand}"
-                    CommandParameter="{Binding ElementName=TextBox, Path=Text}"
+                    CommandParameter="{Binding InputText}"
                     Content="Registration"
                     Margin="4,0"
                     Padding="10,0" />
