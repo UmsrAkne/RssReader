@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -24,6 +25,9 @@ namespace RssReader.ViewModels
 
             DatabaseManager = new DatabaseManager(dataSource);
             WebSiteTreeViewModel = new WebSiteTreeViewModel(DatabaseManager.GetWebSiteWrappers());
+
+            FeedListViewModel = new FeedListViewModel(new List<Feed>());
+            FeedListViewModel.DatabaseManager = DatabaseManager;
         }
 
         public string Title => "Prism Application";
@@ -31,7 +35,7 @@ namespace RssReader.ViewModels
         public FeedListViewModel FeedListViewModel
         {
             get => feedListViewModel;
-            private set => SetProperty(ref feedListViewModel, value);
+            private init => SetProperty(ref feedListViewModel, value);
         }
 
         public WebSiteTreeViewModel WebSiteTreeViewModel { get; private set; }
@@ -45,7 +49,8 @@ namespace RssReader.ViewModels
             if (webSiteWrapper.IsWebSite)
             {
                 WebSiteTreeViewModel.SelectedId = webSiteWrapper.WebSite.Id;
-                FeedListViewModel = new FeedListViewModel(DatabaseManager.GetFeeds(webSiteWrapper.WebSite.Id));
+                FeedListViewModel.Feeds =
+                    new ObservableCollection<Feed>(DatabaseManager.GetFeeds(webSiteWrapper.WebSite.Id));
             }
         });
 
@@ -69,7 +74,8 @@ namespace RssReader.ViewModels
             }
 
             DatabaseManager.SaveChanges();
-            FeedListViewModel = new FeedListViewModel(DatabaseManager.GetFeeds(WebSiteTreeViewModel.SelectedId));
+            FeedListViewModel.Feeds =
+                new ObservableCollection<Feed>(DatabaseManager.GetFeeds(WebSiteTreeViewModel.SelectedId));
         });
 
         public DelegateCommand ShowWebSiteRegistrationPageCommand => new (() =>
