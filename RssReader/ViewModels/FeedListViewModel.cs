@@ -25,7 +25,13 @@ namespace RssReader.ViewModels
             {
                 if (SetProperty(ref selectedItem, value))
                 {
+                    if (value.IsRead)
+                    {
+                        return;
+                    }
+
                     value.IsRead = true;
+                    DatabaseManager.SaveChanges();
                 }
             }
         }
