@@ -84,6 +84,7 @@
             ItemTemplate="{StaticResource ListViewDataTemplate}"
             ItemsSource="{Binding FeedListViewModel.Feeds}"
             Name="FeedListView"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             SelectedItem="{Binding FeedListViewModel.SelectedItem}">
 
             <ListView.ItemContainerStyle>
