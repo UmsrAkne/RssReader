@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using Prism.Commands;
 using Prism.Mvvm;
 using RssReader.Models;
 using RssReader.Models.Databases;
@@ -37,5 +39,16 @@ namespace RssReader.ViewModels
         }
 
         public DatabaseManager DatabaseManager { get; set; }
+
+        public DelegateCommand<Feed> OpenUrlCommand => new ((feed) =>
+        {
+            var pi = new ProcessStartInfo()
+            {
+                FileName = feed.Url,
+                UseShellExecute = true,
+            };
+
+            Process.Start(pi);
+        });
     }
 }
