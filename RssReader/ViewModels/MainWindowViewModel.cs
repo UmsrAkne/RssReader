@@ -88,6 +88,16 @@ namespace RssReader.ViewModels
                 });
         });
 
+        public DelegateCommand ShowNgWordRegistrationPageCommand => new (() =>
+        {
+            dialogService.ShowDialog(
+                nameof(NgWordRegistrationPage),
+                new DialogParameters() { { nameof(DatabaseManager), DatabaseManager }, },
+                (IDialogResult result) =>
+                {
+                });
+        });
+
         private DatabaseManager DatabaseManager { get; set; }
     }
 }

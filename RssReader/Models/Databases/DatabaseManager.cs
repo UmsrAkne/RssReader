@@ -32,6 +32,11 @@ namespace RssReader.Models.Databases
             DataSource.Add(webSite);
         }
 
+        public void Add(NgWord ngWord)
+        {
+            DataSource.Add(ngWord);
+        }
+
         public IEnumerable<Feed> GetFeeds(int webSiteId)
         {
             var ngWords = DataSource.GetNgWords();
@@ -57,6 +62,11 @@ namespace RssReader.Models.Databases
         public IEnumerable<WebSiteGroup> GetWebSiteGroups()
         {
             return DataSource.GetWebSiteGroups();
+        }
+
+        public IEnumerable<NgWord> GetNgWords()
+        {
+            return DataSource.GetNgWords();
         }
 
         public void SaveChanges()
