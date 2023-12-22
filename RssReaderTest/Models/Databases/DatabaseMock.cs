@@ -12,6 +12,8 @@ namespace RssReaderTest.Models.Databases
 
         public List<WebSiteGroup> WebSiteGroups { get; } = new ();
 
+        public List<NgWord> NgWords { get; } = new ();
+
         public IEnumerable<Feed> GetFeeds()
         {
             return Feeds;
@@ -27,6 +29,11 @@ namespace RssReaderTest.Models.Databases
             return WebSiteGroups;
         }
 
+        public IEnumerable<NgWord> GetNgWords()
+        {
+            return NgWords;
+        }
+
         public void Add(Feed feed)
         {
             Feeds.Add(feed);
@@ -40,6 +47,11 @@ namespace RssReaderTest.Models.Databases
         public void Add(WebSiteGroup webSiteGroup)
         {
             WebSiteGroups.Add(webSiteGroup);
+        }
+
+        public void Add(NgWord ngWord)
+        {
+            NgWords.Add(ngWord);
         }
 
         public void Save()
