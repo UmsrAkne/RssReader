@@ -49,6 +49,7 @@
                     Command="{Binding LoadRssCommand}"
                     CommandParameter="{Binding ElementName=TreeView, Path=ItemsSource}"
                     Header="更新" />
+                <MenuItem Command="{Binding ShowNgWordRegistrationPageCommand}" Header="NGワード登録" />
             </MenuItem>
         </Menu>
 

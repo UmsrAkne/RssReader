@@ -18,6 +18,7 @@ namespace RssReader
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<WebSiteRegistrationPage, WebSiteRegistrationPageViewModel>();
+            containerRegistry.RegisterDialog<NgWordRegistrationPage, NgWordRegistrationPageViewModel>();
         }
     }
 }

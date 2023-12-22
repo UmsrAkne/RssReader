@@ -32,9 +32,17 @@ namespace RssReader.Models.Databases
             DataSource.Add(webSite);
         }
 
+        public void Add(NgWord ngWord)
+        {
+            DataSource.Add(ngWord);
+        }
+
         public IEnumerable<Feed> GetFeeds(int webSiteId)
         {
-            return DataSource.GetFeeds().Where(f => f.ParentSiteId == webSiteId);
+            var ngWords = DataSource.GetNgWords();
+            return DataSource.GetFeeds()
+                .Where(f => f.ParentSiteId == webSiteId)
+                .Where(f => !ngWords.Any(w => w.IsMatch(f.Title) || w.IsMatch(f.Description)));
         }
 
         public IEnumerable<WebSiteWrapper> GetWebSiteWrappers()
@@ -54,6 +62,11 @@ namespace RssReader.Models.Databases
         public IEnumerable<WebSiteGroup> GetWebSiteGroups()
         {
             return DataSource.GetWebSiteGroups();
+        }
+
+        public IEnumerable<NgWord> GetNgWords()
+        {
+            return DataSource.GetNgWords();
         }
 
         public void SaveChanges()
