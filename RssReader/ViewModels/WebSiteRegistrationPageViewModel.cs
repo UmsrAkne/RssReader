@@ -13,6 +13,7 @@ namespace RssReader.ViewModels
     public class WebSiteRegistrationPageViewModel : BindableBase, IDialogAware
     {
         private string url;
+        private const string DefaultGroupName = "default Name Group";
 
         public event Action<IDialogResult> RequestClose;
 
@@ -34,10 +35,18 @@ namespace RssReader.ViewModels
 
             if (webSiteGroup == null)
             {
-                var wg = new WebSiteGroup { Name = "default Name Group", };
-                DatabaseManager.Add(wg);
-                DatabaseManager.SaveChanges(); // 変更を確定して WebSiteGroup の Id を確定させる。
-                webSiteGroup = wg;
+                var wg = DatabaseManager.GetWebSiteGroups().FirstOrDefault(g => g.Name == DefaultGroupName);
+                if (wg == null)
+                {
+                    var defaultNameGroup = new WebSiteGroup() { Name = DefaultGroupName, };
+                    DatabaseManager.Add(defaultNameGroup);
+                    DatabaseManager.SaveChanges(); // 変更を確定して WebSiteGroup の Id を確定させる。
+                    webSiteGroup = defaultNameGroup;
+                }
+                else
+                {
+                    webSiteGroup = wg;
+                }
             }
 
             var site = new WebSite
