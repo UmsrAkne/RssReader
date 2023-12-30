@@ -25,7 +25,7 @@ namespace RssReader.ViewModels
 
         public DatabaseManager DatabaseManager { get; set; }
 
-        public ObservableCollection<NgWord> NgWords { get => ngWords; set => SetProperty(ref ngWords, value); }
+        public ObservableCollection<NgWord> NgWords { get => ngWords; private set => SetProperty(ref ngWords, value); }
 
         public string InputText { get => inputText; set => SetProperty(ref inputText, value); }
 
