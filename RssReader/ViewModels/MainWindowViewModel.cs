@@ -14,7 +14,7 @@ namespace RssReader.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly IDialogService dialogService;
-        private FeedListViewModel feedListViewModel;
+        private readonly FeedListViewModel feedListViewModel;
         private WebSiteTreeViewModel webSiteTreeViewModel;
 
         public MainWindowViewModel(IDialogService dialogService)
@@ -26,9 +26,7 @@ namespace RssReader.ViewModels
 
             DatabaseManager = new DatabaseManager(dataSource);
             WebSiteTreeViewModel = new WebSiteTreeViewModel(DatabaseManager.GetWebSiteWrappers());
-
-            FeedListViewModel = new FeedListViewModel(new List<Feed>());
-            FeedListViewModel.DatabaseManager = DatabaseManager;
+            FeedListViewModel = new FeedListViewModel(new List<Feed>()) { DatabaseManager = DatabaseManager, };
         }
 
         public string Title => "Prism Application";
@@ -44,11 +42,13 @@ namespace RssReader.ViewModels
             get => webSiteTreeViewModel;
             private set
             {
-                if (SetProperty(ref webSiteTreeViewModel, value))
+                if (!SetProperty(ref webSiteTreeViewModel, value))
                 {
-                    RaisePropertyChanged(nameof(ReloadFeedsCommand));
-                    RaisePropertyChanged(nameof(LoadRssCommand));
+                    return;
                 }
+
+                RaisePropertyChanged(nameof(ReloadFeedsCommand));
+                RaisePropertyChanged(nameof(LoadRssCommand));
             }
         }
 
@@ -95,7 +95,7 @@ namespace RssReader.ViewModels
             dialogService.ShowDialog(
                 nameof(WebSiteRegistrationPage),
                 new DialogParameters() { { nameof(DatabaseManager), DatabaseManager }, },
-                (IDialogResult result) =>
+                result =>
                 {
                     if (result.Result == ButtonResult.Yes)
                     {
@@ -109,11 +109,11 @@ namespace RssReader.ViewModels
             dialogService.ShowDialog(
                 nameof(NgWordRegistrationPage),
                 new DialogParameters() { { nameof(DatabaseManager), DatabaseManager }, },
-                (IDialogResult result) =>
+                _ =>
                 {
                 });
         });
 
-        private DatabaseManager DatabaseManager { get; set; }
+        private DatabaseManager DatabaseManager { get; init; }
     }
 }

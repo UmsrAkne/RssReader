@@ -38,7 +38,7 @@ namespace RssReader.ViewModels
             }
         }
 
-        public DatabaseManager DatabaseManager { get; set; }
+        public DatabaseManager DatabaseManager { get; init; }
 
         public DelegateCommand<Feed> OpenUrlCommand => new ((feed) =>
         {
