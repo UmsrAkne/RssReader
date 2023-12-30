@@ -18,9 +18,11 @@ namespace RssReader.ViewModels
 
         public string Title => string.Empty;
 
+        public bool WebSiteAdded { get; set; }
+
         public DelegateCommand CloseCommand => new (() =>
         {
-            RequestClose?.Invoke(new DialogResult());
+            RequestClose?.Invoke(new DialogResult(ButtonResult.Cancel));
         });
 
         public DelegateCommand<WebSiteGroup> ConfirmCommand => new ((webSiteGroup) =>
@@ -47,7 +49,7 @@ namespace RssReader.ViewModels
 
             DatabaseManager.Add(site);
             DatabaseManager.SaveChanges();
-            RequestClose?.Invoke(new DialogResult());
+            RequestClose?.Invoke(new DialogResult(ButtonResult.Yes));
         });
 
         private DatabaseManager DatabaseManager { get; set; }

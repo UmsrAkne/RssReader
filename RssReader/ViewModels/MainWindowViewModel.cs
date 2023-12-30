@@ -15,6 +15,7 @@ namespace RssReader.ViewModels
     {
         private readonly IDialogService dialogService;
         private FeedListViewModel feedListViewModel;
+        private WebSiteTreeViewModel webSiteTreeViewModel;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -38,7 +39,18 @@ namespace RssReader.ViewModels
             private init => SetProperty(ref feedListViewModel, value);
         }
 
-        public WebSiteTreeViewModel WebSiteTreeViewModel { get; private set; }
+        public WebSiteTreeViewModel WebSiteTreeViewModel
+        {
+            get => webSiteTreeViewModel;
+            private set
+            {
+                if (SetProperty(ref webSiteTreeViewModel, value))
+                {
+                    RaisePropertyChanged(nameof(ReloadFeedsCommand));
+                    RaisePropertyChanged(nameof(LoadRssCommand));
+                }
+            }
+        }
 
         /// <summary>
         ///     TreeView.SelectedItem が変更されたときに実行するコマンド。
@@ -85,6 +97,10 @@ namespace RssReader.ViewModels
                 new DialogParameters() { { nameof(DatabaseManager), DatabaseManager }, },
                 (IDialogResult result) =>
                 {
+                    if (result.Result == ButtonResult.Yes)
+                    {
+                        WebSiteTreeViewModel = new WebSiteTreeViewModel(DatabaseManager.GetWebSiteWrappers());
+                    }
                 });
         });
 
