@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RssReader.Models
 {
@@ -10,6 +11,9 @@ namespace RssReader.Models
 
         [Required]
         public string Word { get; set; } = string.Empty;
+
+        [NotMapped]
+        public int Index { get; set; }
 
         public bool IsMatch(string target)
         {

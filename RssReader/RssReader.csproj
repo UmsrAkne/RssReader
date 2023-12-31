@@ -11,4 +11,9 @@
         <PackageReference Include="System.Data.SQLite" Version="1.0.118"/>
         <PackageReference Include="System.ServiceModel.Syndication" Version="8.0.0-rc.2.23479.6"/>
     </ItemGroup>
+    <ItemGroup>
+        <Reference Include="MyLibrary">
+            <HintPath>..\..\MyLibrary\MyLibrary\bin\Debug\net5.0\MyLibrary.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 </Project>
