@@ -50,7 +50,14 @@ namespace RssReader.ViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
             DatabaseManager = parameters.GetValue<DatabaseManager>(nameof(DatabaseManager));
-            NgWords = new ObservableCollection<NgWord>(DatabaseManager.GetNgWords());
+            var words = new ObservableCollection<NgWord>(DatabaseManager.GetNgWords());
+            for (var index = 0; index < words.Count; index++)
+            {
+                var w = words[index];
+                w.Index = index + 1;
+            }
+
+            NgWords = words;
         }
     }
 }
