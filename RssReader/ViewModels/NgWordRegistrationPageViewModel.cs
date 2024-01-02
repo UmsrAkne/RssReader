@@ -36,6 +36,7 @@ namespace RssReader.ViewModels
             NgWords.Add(n);
             DatabaseManager.SaveChanges();
             InputText = string.Empty;
+            ReloadList();
         });
 
         public DelegateCommand<NgWord> DeleteNgWordCommand => new ((ngWord) =>
@@ -48,6 +49,7 @@ namespace RssReader.ViewModels
             NgWords.Remove(ngWord);
             DatabaseManager.Remove(ngWord);
             DatabaseManager.SaveChanges();
+            ReloadList();
         });
 
         public bool CanCloseDialog()
@@ -62,6 +64,11 @@ namespace RssReader.ViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
             DatabaseManager = parameters.GetValue<DatabaseManager>(nameof(DatabaseManager));
+            ReloadList();
+        }
+
+        private void ReloadList()
+        {
             var words = new ObservableCollection<NgWord>(DatabaseManager.GetNgWords());
             for (var index = 0; index < words.Count; index++)
             {
