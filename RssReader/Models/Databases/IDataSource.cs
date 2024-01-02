@@ -20,6 +20,8 @@ namespace RssReader.Models.Databases
 
         public void Add(NgWord ngWord);
 
+        public void Remove(NgWord ngWord);
+
         public void Save();
     }
 }

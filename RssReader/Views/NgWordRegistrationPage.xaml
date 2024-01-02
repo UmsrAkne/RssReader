@@ -22,7 +22,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="0" ItemsSource="{Binding NgWords}">
+        <ListView Grid.Row="0" ItemsSource="{Binding NgWords}" x:Name="ListView">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:NgWord}">
                     <Grid>
@@ -63,6 +63,13 @@
                     Command="{Binding AddNgWordCommand}"
                     CommandParameter="{Binding InputText}"
                     Content="Registration" />
+
+                <Button
+                    Margin="4,0"
+                    Padding="10,0"
+                    Command="{Binding DeleteNgWordCommand}"
+                    CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                    Content="Remove" />
 
                 <Button
                     Width="60"
