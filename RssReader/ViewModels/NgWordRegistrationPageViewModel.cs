@@ -38,6 +38,18 @@ namespace RssReader.ViewModels
             InputText = string.Empty;
         });
 
+        public DelegateCommand<NgWord> DeleteNgWordCommand => new ((ngWord) =>
+        {
+            if (ngWord == null)
+            {
+                return;
+            }
+
+            NgWords.Remove(ngWord);
+            DatabaseManager.Remove(ngWord);
+            DatabaseManager.SaveChanges();
+        });
+
         public bool CanCloseDialog()
         {
             return true;
