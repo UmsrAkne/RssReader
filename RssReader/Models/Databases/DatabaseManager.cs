@@ -69,6 +69,11 @@ namespace RssReader.Models.Databases
             return DataSource.GetNgWords();
         }
 
+        public void Remove(NgWord ngWord)
+        {
+            DataSource.Remove(ngWord);
+        }
+
         public void SaveChanges()
         {
             DataSource.Save();

@@ -54,6 +54,11 @@ namespace RssReaderTest.Models.Databases
             NgWords.Add(ngWord);
         }
 
+        public void Remove(NgWord ngWord)
+        {
+            NgWords.Remove(ngWord);
+        }
+
         public void Save()
         {
         }
