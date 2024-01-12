@@ -92,6 +92,35 @@
                 <Style TargetType="ListViewItem">
                     <Style.Setters>
                         <Setter Property="BorderThickness" Value="6,0,0,0" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border
+                                        x:Name="Bd"
+                                        Padding="3"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        SnapsToDevicePixels="true">
+
+                                        <!--  ここに ListViewItem の内容を配置  -->
+                                        <ContentPresenter />
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="PaleTurquoise" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="PaleGreen" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+
+                        </Setter>
                     </Style.Setters>
 
                     <Style.Triggers>
