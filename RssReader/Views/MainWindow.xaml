@@ -90,10 +90,18 @@
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
+                    <Style.Setters>
+                        <Setter Property="BorderThickness" Value="6,0,0,0" />
+                    </Style.Setters>
+
                     <Style.Triggers>
                         <Trigger Property="ItemsControl.AlternationIndex" Value="0">
                             <Setter Property="Background" Value="AntiqueWhite" />
                         </Trigger>
+
+                        <DataTrigger Binding="{Binding IsRead}" Value="False">
+                            <Setter Property="BorderBrush" Value="Coral" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
