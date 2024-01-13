@@ -140,7 +140,8 @@
             Grid.Row="2"
             Grid.Column="1"
             FontSize="{StaticResource BasicFontSize}"
-            Text="{Binding ElementName=FeedListView, Path=SelectedItem.Description}" />
+            Text="{Binding ElementName=FeedListView, Path=SelectedItem.Description}"
+            TextWrapping="WrapWithOverflow" />
 
         <StatusBar
             Grid.Row="3"
