@@ -114,6 +114,32 @@ namespace RssReader.ViewModels
                 });
         });
 
+        public DelegateCommand<WebSiteWrapper> ShowWebSiteGroupEditPageCommand => new ((ww) =>
+        {
+            // TreeView のコンテキストメニューから呼び出されるコマンド
+            // ItemsSource の型は WebSiteWrapper となっており、グループとウェブサイトが混在している
+            // そのため、WebSiteGroup に値がセットされているかを確認して処理。
+
+            if (ww?.WebSiteGroup == null)
+            {
+                return;
+            }
+
+            var wg = ww.WebSiteGroup;
+
+            dialogService.ShowDialog(
+                nameof(WebSiteGroupEditPage),
+                new DialogParameters()
+                {
+                    { nameof(DatabaseManager), DatabaseManager },
+                    { nameof(WebSiteGroup), wg },
+                },
+                _ =>
+                {
+                    WebSiteTreeViewModel = new WebSiteTreeViewModel(DatabaseManager.GetWebSiteWrappers());
+                });
+        });
+
         private DatabaseManager DatabaseManager { get; init; }
     }
 }

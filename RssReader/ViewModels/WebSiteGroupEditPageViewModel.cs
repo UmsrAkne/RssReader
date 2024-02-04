@@ -2,6 +2,7 @@ using System;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
+using RssReader.Models;
 using RssReader.Models.Databases;
 
 namespace RssReader.ViewModels
@@ -19,10 +20,14 @@ namespace RssReader.ViewModels
 
         public DelegateCommand CloseCommand => new (() =>
         {
+            WebSiteGroup.Name = GroupName;
+            DatabaseManager.SaveChanges();
             RequestClose?.Invoke(new DialogResult());
         });
 
         private DatabaseManager DatabaseManager { get; set; }
+
+        private WebSiteGroup WebSiteGroup { get; set; }
 
         public bool CanCloseDialog()
         {
@@ -36,6 +41,8 @@ namespace RssReader.ViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
             DatabaseManager = parameters.GetValue<DatabaseManager>(nameof(DatabaseManager));
+            WebSiteGroup = parameters.GetValue<WebSiteGroup>(nameof(WebSiteGroup));
+            GroupName = WebSiteGroup.Name;
         }
     }
 }

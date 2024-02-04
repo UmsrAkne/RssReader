@@ -61,6 +61,19 @@
             Width="250"
             ItemsSource="{Binding WebSiteTreeViewModel.WebSiteWrappers}">
 
+            <TreeView.Resources>
+                <ContextMenu x:Key="ItemContextMenu">
+                    <MenuItem
+                        Command="{Binding ShowWebSiteGroupEditPageCommand}"
+                        CommandParameter="{Binding PlacementTarget.(TreeView.SelectedItem), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"
+                        Header="名前を編集" />
+                </ContextMenu>
+            </TreeView.Resources>
+
+            <TreeView.ContextMenu>
+                <StaticResource ResourceKey="ItemContextMenu" />
+            </TreeView.ContextMenu>
+
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding ReloadFeedsCommand}" CommandParameter="{Binding ElementName=TreeView, Path=SelectedItem}" />
