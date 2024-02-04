@@ -7,9 +7,42 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:RssReader.ViewModels"
     Title="WebSiteGroupEditPage"
-    Width="800"
-    Height="450"
+    Width="500"
+    Height="Auto"
     d:DataContext="{d:DesignInstance viewModels:WebSiteGroupEditPageViewModel}"
     mc:Ignorable="d">
-    <Grid />
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="3">
+            <TextBox
+                DockPanel.Dock="Right"
+                FontSize="{StaticResource BasicFontSize}"
+                Text="{Binding GroupName, UpdateSourceTrigger=PropertyChanged}" />
+        </DockPanel>
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Command="{Binding CloseCommand}"
+                Content="Close"
+                FontSize="{StaticResource BasicFontSize}" />
+        </StackPanel>
+
+    </Grid>
 </Page>
