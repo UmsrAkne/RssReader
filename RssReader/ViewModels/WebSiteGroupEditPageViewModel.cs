@@ -14,7 +14,7 @@ namespace RssReader.ViewModels
 
         public event Action<IDialogResult> RequestClose;
 
-        public string Title => string.Empty;
+        public string Title => "WebSiteGroup Edit Page";
 
         public string GroupName { get => groupName; set => SetProperty(ref groupName, value); }
 
