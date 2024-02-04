@@ -19,6 +19,7 @@ namespace RssReader
         {
             containerRegistry.RegisterDialog<WebSiteRegistrationPage, WebSiteRegistrationPageViewModel>();
             containerRegistry.RegisterDialog<NgWordRegistrationPage, NgWordRegistrationPageViewModel>();
+            containerRegistry.RegisterDialog<WebSiteGroupEditPage, WebSiteGroupEditPageViewModel>();
         }
     }
 }
