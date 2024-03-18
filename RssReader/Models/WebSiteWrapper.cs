@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Prism.Mvvm;
 
 namespace RssReader.Models
 {
-    public class WebSiteWrapper
+    public class WebSiteWrapper : BindableBase
     {
+        private int unreadCount;
+
         public WebSiteWrapper(WebSiteGroup webSiteGroup)
         {
             WebSiteGroup = webSiteGroup;
@@ -23,5 +26,7 @@ namespace RssReader.Models
         public List<WebSiteWrapper> Children { get; set; } = new ();
 
         public bool IsWebSite => WebSite != null;
+
+        public int UnreadCount { get => unreadCount; set => SetProperty(ref unreadCount, value); }
     }
 }
