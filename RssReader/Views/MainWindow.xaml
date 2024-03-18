@@ -83,10 +83,13 @@
 
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type models:WebSiteWrapper}" ItemsSource="{Binding Children}">
-                    <TextBlock
-                        Padding="4,0"
-                        FontSize="{StaticResource BasicFontSize}"
-                        Text="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Padding="4,0"
+                            FontSize="{StaticResource BasicFontSize}"
+                            Text="{Binding Name}" />
+                        <TextBlock FontSize="{StaticResource BasicFontSize}" Text="{Binding UnreadCount, StringFormat='({0})'}" />
+                    </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
