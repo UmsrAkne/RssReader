@@ -25,7 +25,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="250" MinWidth="200" />
+            <ColumnDefinition Width="2" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
@@ -41,7 +42,7 @@
         <Menu
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="3">
 
             <MenuItem Header="機能">
                 <MenuItem Command="{Binding ShowWebSiteRegistrationPageCommand}" Header="ウェブサイト登録" />
@@ -58,7 +59,7 @@
             Grid.Row="1"
             Grid.RowSpan="3"
             Grid.Column="0"
-            Width="250"
+            HorizontalAlignment="Stretch"
             ItemsSource="{Binding WebSiteTreeViewModel.WebSiteWrappers}">
 
             <TreeView.Resources>
@@ -90,10 +91,16 @@
             </TreeView.ItemTemplate>
         </TreeView>
 
+        <GridSplitter
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch" />
+
         <ListView
             Name="FeedListView"
             Grid.Row="1"
-            Grid.Column="1"
+            Grid.Column="2"
             HorizontalContentAlignment="Stretch"
             AlternationCount="2"
             ItemTemplate="{StaticResource ListViewDataTemplate}"
@@ -151,7 +158,7 @@
 
         <TextBlock
             Grid.Row="2"
-            Grid.Column="1"
+            Grid.Column="2"
             FontSize="{StaticResource BasicFontSize}"
             Text="{Binding ElementName=FeedListView, Path=SelectedItem.Description}"
             TextWrapping="WrapWithOverflow" />
@@ -159,7 +166,7 @@
         <StatusBar
             Grid.Row="3"
             Grid.Column="0"
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="3">
             <TextBlock />
         </StatusBar>
     </Grid>
