@@ -62,7 +62,10 @@ namespace RssReader.ViewModels
             {
                 WebSiteTreeViewModel.SelectedId = webSiteWrapper.WebSite.Id;
                 FeedListViewModel.Feeds =
-                    new ObservableCollection<Feed>(DatabaseManager.GetFeeds(webSiteWrapper.WebSite.Id));
+                    new ObservableCollection<Feed>(DatabaseManager.GetFeeds(webSiteWrapper.WebSite.Id)
+                        .OrderBy(f => f.IsRead)
+                        .ThenByDescending(f => f.DateTime)
+                    );
 
                 webSiteWrapper.UnreadCount = FeedListViewModel.Feeds.Count(f => !f.IsRead);
             }
