@@ -39,7 +39,7 @@ namespace RssReader.Models.Databases
 
         public IEnumerable<Feed> GetFeeds(int webSiteId)
         {
-            var ngWords = DataSource.GetNgWords();
+            var ngWords = DataSource.GetNgWords().ToList();
             return DataSource.GetFeeds()
                 .Where(f => f.ParentSiteId == webSiteId)
                 .Where(f => !ngWords.Any(w => w.IsMatch(f.Title) || w.IsMatch(f.Description)));
