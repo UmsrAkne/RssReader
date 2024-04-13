@@ -22,6 +22,18 @@ namespace RssReader.Models.Databases
             DataSource.Add(feed);
         }
 
+        public void AddRange(IEnumerable<Feed> feeds)
+        {
+            var f = feeds.ToList();
+            if (!f.Any())
+            {
+                return;
+            }
+
+            var dbList = GetFeeds(f.First().ParentSiteId).ToList();
+            DataSource.AddRange(f.Except(dbList, new FeedComparer()));
+        }
+
         public void Add(WebSiteGroup webSiteGroup)
         {
             DataSource.Add(webSiteGroup);
