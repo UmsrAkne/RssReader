@@ -39,6 +39,11 @@ namespace RssReaderTest.Models.Databases
             Feeds.Add(feed);
         }
 
+        public void AddRange(IEnumerable<Feed> feeds)
+        {
+            Feeds.AddRange(feeds);
+        }
+
         public void Add(WebSite webSite)
         {
             WebSites.Add(webSite);

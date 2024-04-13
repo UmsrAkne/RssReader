@@ -83,10 +83,7 @@ namespace RssReader.ViewModels
             {
                 foreach (var site in ww.Children)
                 {
-                    foreach (var feed in FeedReader.GetRss(site.WebSite))
-                    {
-                        DatabaseManager.AddFeed(feed);
-                    }
+                    DatabaseManager.AddRange(FeedReader.GetRss(site.WebSite));
                 }
             }
 

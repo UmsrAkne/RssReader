@@ -14,6 +14,8 @@ namespace RssReader.Models.Databases
 
         public void Add(Feed feed);
 
+        public void AddRange(IEnumerable<Feed> feeds);
+
         public void Add(WebSite webSite);
 
         public void Add(WebSiteGroup webSiteGroup);
